@@ -1,5 +1,6 @@
 import psycopg2
 from decouple import config
+import csv
 
 
 class DatabaseError(psycopg2.Error):
@@ -60,3 +61,21 @@ class DB:
             print("Listings and Categories tables no longer in database.")
         except (Exception, DatabaseError):
             raise DatabaseError("Could not drop tables in the specified database")
+
+    def get_records_from_both_tables(self):
+        """
+        creates a csv file that contains the joined records from
+        Listing and Categories tables
+        :return: a newly created csv file containg all listings in the postgres database
+        """
+        try:
+            self.__cursor.execute("""SELECT Listings.id, title, item_url, image_url, price, category 
+                                     FROM Listings INNER JOIN Categories ON (Listings.category_id = Categories.id)""")
+            data = self.__cursor.fetchall()
+            with open('listings.csv', 'w') as file:
+                csv_file = csv.writer(file)
+                csv_file.writerow(["id", "title", "item_url", "image_url", "price", "category"])
+                csv_file.writerows(data)
+            print("listings.csv now contains all listings")
+        except (Exception, DatabaseError):
+            raise DatabaseError("Could not perform the requested query")

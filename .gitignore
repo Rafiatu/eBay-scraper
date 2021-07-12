@@ -5,3 +5,4 @@ __pycache__/
 setup.cfg
 pyproject.toml
 .pytest_cache
+listings.csv
