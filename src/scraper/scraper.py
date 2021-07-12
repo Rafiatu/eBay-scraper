@@ -6,15 +6,7 @@ from src.categories import Category
 from src.listings import Listing
 
 
-class WebsiteError(Exception):
-    pass
-
-
-class CategoryAlreadyExists(Exception):
-    pass
-
-
-class ListingAlreadyExists(Exception):
+class ScraperError(Exception):
     pass
 
 
@@ -62,8 +54,8 @@ class eBay:
                 data.append({"title": title,"price": price, "item_url": link, "image_url": image_url})
             self.__dataframe = pd.DataFrame(data)
             return self.__dataframe[:quantity]
-        except WebsiteError:
-            raise WebsiteError("System encountered a problem when scraping the site."
+        except ScraperError:
+            raise ScraperError("System encountered a problem when scraping the site."
                                "Please ensure that you have passed in a relevant keyword and quantity")
 
     def add_category_to_database(self):
@@ -76,8 +68,8 @@ class eBay:
             category_database.add(self.__keyword)
             print(f".......{self.__keyword} category successfully added to Database.......")
             self.__category_id = category_database.get_by_name(self.__keyword)[0]
-        except CategoryAlreadyExists:
-            raise CategoryAlreadyExists(f"Category {self.__keyword} is already in the database")
+        except ScraperError:
+            raise ScraperError(f"Category {self.__keyword} is already in the database")
 
     def add_listings_to_database(self):
         """
@@ -89,5 +81,5 @@ class eBay:
             listing_database = Listing()
             listing_database.add(self.__dataframe)
             print(f"........{self.__keyword} listings successfully added to Database.......")
-        except ListingAlreadyExists:
-            raise ListingAlreadyExists("This listing is already in the database")
+        except ScraperError:
+            raise ScraperError("This listing is already in the database")

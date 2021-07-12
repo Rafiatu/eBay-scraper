@@ -42,7 +42,7 @@ class Listing:
         except ListingError:
             raise ListingError("Something went wrong when trying to add record(s)")
 
-    def get_by_name(self, id: int):
+    def get_category_by_id(self, id: int):
         """
         gets listings from the database by its category_id
         :param id: id of category to be extracted

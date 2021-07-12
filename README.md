@@ -14,14 +14,24 @@ Collects info about the category the listing belongs to, title of listing, link 
 ## Getting Started
 
 Using this scraper is very simple, all you need is to have Git and Docker Engine installed on your machine. 
-Install the requirements stated in the requirements.txt file
-Don't forget to add your postgres database connection variables in the .env file in the root folder. 
+If you do not wish to use docker, simply create your own virtual environment and run `pip install -r requirements.txt` from the root directory to
+install the requirements stated in the `requirements.txt` file
+Don't forget to add your postgres database connection variables in the `.env` file in the root folder.
+Example of what the `.env` file should look like
+```
+DB_PORT = XXXX
+DB_HOST = your_database_host
+DB_USER = your_username
+DB_NAME = the_name_of_your_database_here
+DB_PASSWORD = your_password_here
+
+```
 
 
 The scraper can be found in src/scraper
-eBay contains 3 methods which are scrape(), add_category_to_database(), add_listing_to_database(). 
+eBay contains 3 methods which are `scrape()`, `add_category_to_database()`, `add_listing_to_database()`. 
 The methods are self-explanatory. 
-scrape takes in the category/keyword, and the number/quantity of listings to be scraped while add_category_to_database() and add_listing_to_database adds categories and listings to their 
+scrape takes in the category/keyword, and the number/quantity of listings to be scraped while `add_category_to_database()` and `add_listing_to_database()` adds categories and listings to their 
 respective databases.
 
 Example:
