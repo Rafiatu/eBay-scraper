@@ -1,4 +1,4 @@
-FROM python:3.9.5-alpine as base
+FROM python:3.9.6-alpine as base
 
 COPY src/scraper /scraper
 

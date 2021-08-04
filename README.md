@@ -36,7 +36,7 @@ respective databases.
 
 Example:
 ```
-    from src.scraper import eBay
+    from scraper import eBay
     ebay = eBay()
     ebay.scrape(keyword="book", quantity=200)
     ebay.add_category_to_database()
