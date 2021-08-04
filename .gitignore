@@ -1,8 +1,4 @@
+venv
 .env
-venv/
-__pycache__/
-.idea/
-setup.cfg
-pyproject.toml
-.pytest_cache
-listings.csv
+.idea
+main.py
